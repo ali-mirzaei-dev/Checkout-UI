@@ -7,6 +7,8 @@
     <title>Checkout UI</title>
 
     <link rel="stylesheet" href="assets/StyleSheet/output.css">
+    <link rel="stylesheet" href="assets/Font/FontSocials/style.css">
+    <link rel="stylesheet" href="assets/Font/font1/style.css">
 
 </head>
 
@@ -71,14 +73,14 @@
 
             <!--==================#2-1 NAME INPUT  ==================-->
             <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">Cardholder Name</label>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">Cardholder Name</span>
                 <input id="inputName" type="text" placeholder="ENTER YOUR NAME" class="w-full px-4 py-3 rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] font-medium uppercase tracking-wide focus:outline-none focus:border-[#2196F3] focus:bg-white transition-all duration-300">
             </div>
 
             <!--==================#2-2 CARD INPUT  ==================-->
             <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">Card Number</label>
-                <div class="flex gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">Card Number</span>
+                <div id="cardNumbersInputParent" class="flex gap-2">
                     <input id="inputCard1" inputmode="numeric" type="text" maxlength="4" placeholder="0000" class="w-full px-2 py-3 text-center rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] font-mono text-lg tracking-widest focus:outline-none focus:border-[#2196F3] focus:bg-white transition-all duration-300">
                     <input id="inputCard2" inputmode="numeric" type="text" maxlength="4" placeholder="0000" class="w-full px-2 py-3 text-center rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] font-mono text-lg tracking-widest focus:outline-none focus:border-[#2196F3] focus:bg-white transition-all duration-300">
                     <input id="inputCard3" inputmode="numeric" type="text" maxlength="4" placeholder="0000" class="w-full px-2 py-3 text-center rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] font-mono text-lg tracking-widest focus:outline-none focus:border-[#2196F3] focus:bg-white transition-all duration-300">
@@ -91,7 +93,7 @@
 
                 <!--=======#2-3-1 EXPIRE DATE INPUT  =======-->
                 <div class="flex flex-col gap-2 flex-1">
-                    <label class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">Expires</label>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">Expires</span>
                     <div class="flex gap-2 items-center">
                         <input id="inputMonth" inputmode="numeric" type="text" maxlength="2" placeholder="MM" class="w-full px-2 py-3 text-center rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] font-mono text-lg tracking-widest focus:outline-none focus:border-[#2196F3] focus:bg-white transition-all duration-300">
                         <span class="text-[#0D47A1] font-bold text-lg">/</span>
@@ -101,7 +103,7 @@
 
                 <!--=======#2-3-2 CVV2 INPUT =======-->
                 <div class="flex flex-col gap-2 flex-1">
-                    <label class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">CVV2</label>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#0D47A1]">CVV2</span>
                     <input id="inputCVV" inputmode="numeric" type="text" maxlength="3" placeholder="123" class="w-full px-4 py-3 text-center rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] font-mono text-lg tracking-widest focus:outline-none focus:border-[#2196F3] focus:bg-white transition-all duration-300">
                 </div>
             </div>
@@ -116,8 +118,8 @@
                     </div>
 
                     <!--=======#2-4-2 CAPTCHA REFRESH BTN  =======-->
-                    <button id="refreshCaptcha" type="button" class="shrink-0 p-3 rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] hover:bg-[#90CAF9]/40 hover:border-[#2196F3] transition-all duration-300 cursor-pointer active:scale-90" title="Refresh Captcha">
-
+                    <button id="refreshCaptcha" type="button" title="Refresh Captcha" class="flex items-center justify-center shrink-0 p-3 rounded-lg border-2 border-[#E3F2FD] bg-[#E3F2FD]/30 text-[#0D47A1] hover:bg-[#90CAF9]/40 hover:border-[#2196F3] transition-all duration-300 cursor-pointer active:scale-90">
+                        <i class="icon text-xl"></i>
                     </button>
                 </div>
 
@@ -137,6 +139,6 @@
     </div>
 </body>
 
-    <script src="assets/JavaScript/main.js"></script>
+<script src="assets/JavaScript/main.js"></script>
 
 </html>
