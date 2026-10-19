@@ -8,7 +8,10 @@ const creditDateMonth = document.getElementById("creditDateMonth")
 const creditDateYear = document.getElementById("creditDateYear")
 const inputCVV = document.getElementById("inputCVV")
 const creditCVV2 = document.getElementById("creditCVV2")
-
+const captchaText = document.getElementById("captchaText")
+const refreshCaptcha = document.getElementById("refreshCaptcha")
+const submitPayment = document.getElementById("submitPayment")
+const inputCaptcha = document.getElementById("inputCaptcha")
 
 // ------- NAME INPUT ------- //
 inputName.addEventListener("input", () => {
@@ -113,6 +116,8 @@ inputCVV.addEventListener("input", () => {
     }
     creditCVV2.innerText = inputCVV.value
 })
+
+// ------- CHECKS THE CVV2 ------- //
 inputCVV.addEventListener("blur", () => {
     if (inputCVV.value.length === 0) return
     if (inputCVV.value.length < 3) {
@@ -141,3 +146,56 @@ function toast(message) {
     container.appendChild(toastEl)
     toastTimer = setTimeout(() => toastEl.remove(), 3000)
 }
+
+const captchaCharacter = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+]
+
+const captchaLength = captchaCharacter.length
+
+for (i = 0; i < 5; i++) {
+    let tempCaptcha = (Math.floor(Math.random() * captchaLength));
+
+    captchaText.innerText += captchaCharacter[tempCaptcha]
+}
+
+refreshCaptcha.addEventListener("click", () => {
+
+    captchaText.innerText = ""
+    let tempCaptcha = ""
+
+    for (i = 0; i < 5; i++) {
+        tempCaptcha = (Math.floor(Math.random() * captchaLength));
+
+        captchaText.innerText += captchaCharacter[tempCaptcha]
+    }
+})
+
+
+submitPayment.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    const cardBoxes = Array.from(allInputsNumber)
+    const allCardBoxesFilled = cardBoxes.every(box => box.value.length === 4)
+
+    const errors = []
+
+    if (inputName.value.trim() === "") errors.push("Name is required")
+    if (!allCardBoxesFilled) errors.push("Card number must be 16 digits")
+    if (inputMonth.value.length < 2) errors.push("Month is required")
+    if (inputYear.value.length < 2) errors.push("Year is required")
+    if (inputCVV.value.length < 3 || inputCVV.value.length > 4) errors.push("CVV2 must be 3-4 digits")
+    if (captchaText.innerText !== inputCaptcha.value) errors.push("Captcha is incorrect")
+
+    if (errors.length === 0) {
+        toast("Payment submitted successfully!")
+    } else {
+        toast(errors[0])
+        refreshCaptcha.click()
+        inputCaptcha.value = ""
+    }
+})
