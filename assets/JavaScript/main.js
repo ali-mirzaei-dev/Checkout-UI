@@ -12,32 +12,37 @@ const creditCVV2 = document.getElementById("creditCVV2")
 
 // ------- NAME INPUT ------- //
 inputName.addEventListener("input", () => {
-
-    let tempNameValue = inputName.value
-    creaditName.innerText = tempNameValue
+    if (/[^a-zA-Z\s]/.test(inputName.value)) {
+        inputName.value = inputName.value.replace(/[^a-zA-Z\s]/g, "")
+        toast('Name should only contain letters')
+        return
+    }
+    creaditName.innerText = inputName.value
 })
 
 // ------- NUMBER INPUTS ------- //
 allInputsNumber.forEach((val, i) => {
     val.addEventListener("input", () => {
 
-        if (val.value !== "" && isNaN(val.value)) {
+        if (/[^0-9]/.test(val.value)) {
             val.value = val.value.replace(/[^0-9]/g, "")
             toast('Card number should only contain numbers')
-            return
         }
 
         if (val.value.length >= 4 && i != 3) {
             val.value = val.value.slice(0, 4)
             val.nextElementSibling.focus()
         } else if (val.value.length >= 4 && i == 3) {
+            val.value = val.value.slice(0, 4)
             inputMonth.focus()
         }
 
-        creditNumber.innerText = ''
+        creditNumber.textContent = ''
         allInputsNumber.forEach((r, i) => {
-            creditNumber.innerText += r.value
-            if (i !== allInputsNumber.length - 1 && r.value.length === 4) creditNumber.innerHTML += '-'
+            creditNumber.textContent += r.value
+            if (i !== allInputsNumber.length - 1 && r.value.length === 4) {
+                creditNumber.textContent += '-'
+            }
         })
     })
 })
@@ -53,9 +58,9 @@ inputMonth.addEventListener("input", () => {
 
     if (inputMonth.value.length >= 2) {
 
-        if (inputMonth.value > 12) {
+        if (Number(inputMonth.value) === 0 || Number(inputMonth.value) > 12) {
             inputMonth.value = inputMonth.value.slice(0, -1)
-            toast("Month must be 1-12 digits")
+            toast("Month must be between 01-12")
             return
         }
         inputMonth.value = inputMonth.value.slice(0, 2)
@@ -80,6 +85,16 @@ inputYear.addEventListener("input", () => {
     creditDateYear.innerText = inputYear.value
 
 })
+
+// ------- CHECKS IF THE CARD IS EXPIRED ------- //
+inputYear.addEventListener("blur", () => {
+    if (inputYear.value.length === 0) return
+    const currentYear = Number(new Date().getFullYear().toString().slice(-2))
+    if (Number(inputYear.value) < currentYear) {
+        toast('Card has expired')
+    }
+})
+
 
 // ------- CVV2 INPUT ------- //
 inputCVV.addEventListener("input", () => {
