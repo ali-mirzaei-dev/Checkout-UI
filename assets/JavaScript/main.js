@@ -52,7 +52,7 @@ function showFieldError(input, message) {
     input.classList.remove('border-[#E3F2FD]', 'border-[#90CAF9]')
 
     const errorEl = document.createElement('p')
-    errorEl.className = 'field-error text-red-500 text-xs font-medium mt-1 ml-1 flex items-center gap-1'
+    errorEl.className = 'field-error text-red-500 text-xs font-medium ml-1 flex items-center gap-1'
     errorEl.innerHTML = `<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"/></svg>${message}`
 
     if (input.parentNode.classList.contains('flex')) {
@@ -84,6 +84,7 @@ function setError(input, hasError) {
     }
 }
 
+// ------- NAME INPUT ------- //
 inputName.addEventListener("input", () => {
     clearFieldError(inputName)
 
@@ -95,6 +96,7 @@ inputName.addEventListener("input", () => {
     creaditName.innerText = inputName.value
 })
 
+// ------- CARD NUMBER INPUT ------- //
 allInputsNumber.forEach((val, i) => {
     val.addEventListener("input", () => {
         cardBoxes.forEach(box => clearFieldError(box))
@@ -122,6 +124,7 @@ allInputsNumber.forEach((val, i) => {
     })
 })
 
+// ------- MONTH INPUT ------- //
 inputMonth.addEventListener("input", () => {
     clearFieldError(inputMonth)
 
@@ -143,6 +146,7 @@ inputMonth.addEventListener("input", () => {
     creditDateMonth.innerText = inputMonth.value
 })
 
+// ------- YEAR INPUT ------- //
 inputYear.addEventListener("input", () => {
     clearFieldError(inputYear)
 
@@ -167,6 +171,7 @@ inputYear.addEventListener("blur", () => {
     }
 })
 
+// ------- CVV2 INPUT ------- //
 inputCVV.addEventListener("input", () => {
     clearFieldError(inputCVV)
 
